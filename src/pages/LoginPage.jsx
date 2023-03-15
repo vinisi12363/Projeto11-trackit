@@ -1,5 +1,6 @@
-import React, { useState, Link } from "react"
+import  { useState } from "react"
 import styled from "styled-components"
+import {Link} from "react-router-dom"
 
 
 
@@ -24,11 +25,11 @@ export default function LoginPage() {
                         <input type="password" placeholder="senha" required ></input>
                         <button type="submit" >Entrar</button>
 
-                         {/*tem que chemar um Link qui com   a página de sing up*/}
-                         <p >Não tem uma conta? Cadastre-se</p>
+                         <Link  to="/cadastro">
+                             <p >Não tem uma conta? Cadastre-se</p>
+                         </Link>
+                         
                        
-
-
                     </form>
                 </FormContainer>
             </LoginContainer>

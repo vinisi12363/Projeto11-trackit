@@ -1,4 +1,5 @@
 import styled from "styled-components"
+import {Link} from 'react-router-dom'
 export default function SingUpPage(){
     return (
         <>
@@ -22,10 +23,10 @@ export default function SingUpPage(){
 
                     <button type="submit" >Cadastrar</button>
 
-                     {/*tem que chemar um Link qui com   a página de sing up*/}
-                     <p >Já tem uma conta? Faça login!</p>
+                    <Link to="/">
+                        <p >Já tem uma conta? Faça login!</p>
+                    </Link>
                    
-
 
                 </form>
             </FormContainer>
