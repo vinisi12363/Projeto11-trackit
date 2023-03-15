@@ -7,7 +7,7 @@ import UserContext from "../utils/Contexts/UserContext"
 
 
 
-export default function LoginPage() {
+export default function LoginPage({userData ,setUserData}) {
     const [email , setEmail] = useState("")
     const [password, setPassword] = useState("")
     const navigate = useNavigate();
@@ -21,6 +21,14 @@ export default function LoginPage() {
         const promise= axios.post(URL , body)
         promise.then(res=>{
             console.log(res.data)
+            const newUserData = res.data
+            setUserData ({...userData, 
+                name:newUserData.name,
+                image:newUserData.image,
+                email:newUserData.email,
+                password:newUserData.password,
+                token:newUserData.token
+            })
             navigate("/habitos")
           
 
@@ -29,8 +37,10 @@ export default function LoginPage() {
         promise.catch(err=>{
             alert(err.response.data)
         })
-
+       
     }
+
+    
     return (
         <>
            

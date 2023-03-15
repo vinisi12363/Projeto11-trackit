@@ -4,14 +4,26 @@ import Habits from './pages/HabitsPage.jsx';
 import './App.css';
 import { BrowserRouter ,Route, Routes} from "react-router-dom"
 import { UserContextProvider } from './utils/Contexts/UserContext.js';
+import { useState } from 'react';
 function App() {
+  const  [userData, setUserData]= useState({
+   
+    "name": "",
+    "image": "",
+    "email": "",
+    "password": "",
+    "token": "",
+  })
+
   return (
     
         <BrowserRouter>
       <Routes>
         <Route path="/" element={
              
-                 <Login/>     
+                 <Login 
+                 userData={userData}
+                 setUserData={setUserData}/>     
               
           }></Route>
 
@@ -21,7 +33,7 @@ function App() {
           }></Route>
 
           <Route path="/habitos" element={
-            <Habits/>
+            <Habits userData={userData}/>
           }></Route>
       </Routes>  
       

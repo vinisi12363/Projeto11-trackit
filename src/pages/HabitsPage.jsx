@@ -1,9 +1,15 @@
 import styled from "styled-components";
 import NavBar from './NavBar.jsx'
-export default function Habits(){
+export default function Habits({userData}){
+    console.log ("userDataApos login",userData)
     return(
         <HabitsContainer>
-            <NavBar></NavBar>
+            <NavBar>
+                <img src={userData.image}></img>
+                <p>{userData.name}</p>
+            </NavBar>
+                <img src={userData.image}></img>
+                <p>{userData.name}</p>
         </HabitsContainer>
     )
 }
