@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 import { useState } from "react"
 import axios from "axios"
 export default function SingUpPage(){
@@ -7,6 +7,7 @@ export default function SingUpPage(){
     const [userPassword, setUserPassword] = useState("")
     const [userName, setUserName] = useState("")
     const [userPhoto, setUserPhoto] = useState("")
+    const navigate = useNavigate();
 
     
   
@@ -22,11 +23,14 @@ export default function SingUpPage(){
         const require = axios.post(URL, body);
       
         require.then (res=> {
-            alert("usuário Cadastrado")
-            console.log (res.data)
+            alert("usuário Cadastrado com sucesso!")
+            navigate("/")
+
         })  
         require.catch(err=>{
-            alert(err.response.data)
+            
+                err.response.status === 409 && alert("usuario já cadastrado")
+
         })
     
     }
