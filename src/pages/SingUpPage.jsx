@@ -1,6 +1,35 @@
 import styled from "styled-components"
 import {Link} from 'react-router-dom'
+import { useState } from "react"
+import axios from "axios"
 export default function SingUpPage(){
+    const [userEmail, setUserEmail] = useState("")
+    const [userPassword, setUserPassword] = useState("")
+    const [userName, setUserName] = useState("")
+    const [userPhoto, setUserPhoto] = useState("")
+
+    
+  
+    
+    function singUp(e){
+        e.preventDefault()
+       
+        const URL = "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/sign-up"
+        
+        const body= {email:userEmail, name:userName , password:userPassword, image:userPhoto}
+        
+        console.log(body)
+        const require = axios.post(URL, body);
+      
+        require.then (res=> {
+            alert("usuário Cadastrado")
+            console.log (res.data)
+        })  
+        require.catch(err=>{
+            alert(err.response.data)
+        })
+    
+    }
     return (
         <>
 
@@ -15,11 +44,37 @@ export default function SingUpPage(){
             </svg>
 
             <FormContainer>
-                <form>
-                    <input type="email" placeholder="email" required></input>
-                    <input type="password" placeholder="senha" required ></input>
-                    <input type="text" placeholder="nome" required></input>
-                    <input type="text" placeholder="foto" required ></input>
+                <form onSubmit={singUp}>
+                    <input 
+                        ype="email" 
+                        value={userEmail}
+                        placeholder="email"
+                        required
+                        onChange={e=>setUserEmail(e.target.value)}
+                     ></input>
+
+                    <input 
+                        type="text"
+                        value={userPassword}
+                        placeholder="senha"
+                        required
+                        onChange={e=>setUserPassword(e.target.value)}
+                    ></input>
+
+                    <input 
+                        type="text"
+                        value={userName} 
+                        placeholder="nome" 
+                        required
+                        onChange={e=>setUserName(e.target.value)}
+                    ></input>
+                    <input 
+                        type="text" 
+                        placeholder="foto" 
+                        required
+                        value={userPhoto}
+                        onChange={e=>setUserPhoto(e.target.value)}
+                    ></input>
 
                     <button type="submit" >Cadastrar</button>
 
