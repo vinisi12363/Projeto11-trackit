@@ -57,6 +57,7 @@ export default function LoginPage() {
                     <FormContainer onSubmit={login}>
                         <form>
                             <input 
+                            data-test="email-input"
                             type="email"
                             value={email} 
                             placeholder="email" 
@@ -64,7 +65,8 @@ export default function LoginPage() {
                             onChange={e=>setEmail(e.target.value)} 
 
                             ></input>
-                            <input 
+                            <input
+                                data-test="password-input" 
                                 type="password" 
                                 value={password} 
                                 placeholder="senha" 
@@ -73,9 +75,9 @@ export default function LoginPage() {
 
                             ></input>
                             
-                            <button type="submit" >Entrar</button>
+                            <button data-test="login-btn" type="submit" >Entrar</button>
 
-                            <Link  to="/cadastro">
+                            <Link data-test="signup-link" to="/cadastro">
                                 <p >Não tem uma conta? Cadastre-se</p>
                             </Link>
                             

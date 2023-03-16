@@ -50,7 +50,8 @@ export default function SingUpPage(){
             <FormContainer>
                 <form onSubmit={singUp}>
                     <input 
-                        ype="email" 
+                        data-test="email-input"
+                        type="email" 
                         value={userEmail}
                         placeholder="email"
                         required
@@ -58,6 +59,7 @@ export default function SingUpPage(){
                      ></input>
 
                     <input 
+                        data-test="password-input"
                         type="text"
                         value={userPassword}
                         placeholder="senha"
@@ -65,14 +67,16 @@ export default function SingUpPage(){
                         onChange={e=>setUserPassword(e.target.value)}
                     ></input>
 
-                    <input 
+                    <input
+                        data-test="user-name-input" 
                         type="text"
                         value={userName} 
                         placeholder="nome" 
                         required
                         onChange={e=>setUserName(e.target.value)}
                     ></input>
-                    <input 
+                    <input
+                        data-test="user-image-input" 
                         type="text" 
                         placeholder="foto" 
                         required
@@ -80,9 +84,9 @@ export default function SingUpPage(){
                         onChange={e=>setUserPhoto(e.target.value)}
                     ></input>
 
-                    <button type="submit" >Cadastrar</button>
+                    <button  data-test="signup-btn" type="submit" >Cadastrar</button>
 
-                    <Link to="/">
+                    <Link  data-test="login-link"  to="/">
                         <p >Já tem uma conta? Faça login!</p>
                     </Link>
                    
