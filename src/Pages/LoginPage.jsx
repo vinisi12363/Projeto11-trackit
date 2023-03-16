@@ -3,13 +3,14 @@ import styled from "styled-components"
 import {Link, useNavigate} from "react-router-dom"
 import axios from "axios"
 import {UserContextHook} from '../Hooks/UserContextHook'
+import {ThreeDots} from 'react-loader-spinner'
 
 
 export default function LoginPage() {
 
+    let btnText = "Entrar"
     const {user ,setUser} = UserContextHook()
-
-   
+    const [enterClicked , setEnterClicked] = useState(false)
 
     const [email , setEmail] = useState("")
     const [password, setPassword] = useState("")
@@ -18,14 +19,15 @@ export default function LoginPage() {
     function login(e){
         e.preventDefault()
         const URL="https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login"
-
+        setEnterClicked(true)
         const body ={email,password}
-
+       
         const promise= axios.post(URL , body)
         promise.then(res=>{
             console.log(res.data)
             const newUserData = res.data
-            setUser ({...user, 
+            setUser ({...user,
+                name:newUserData.name, 
                 image:newUserData.image,
                 token:newUserData.token
             })
@@ -36,6 +38,7 @@ export default function LoginPage() {
 
         promise.catch(err=>{
             alert(err.response.data)
+            setEnterClicked(false)
         })
        
     }
@@ -61,8 +64,10 @@ export default function LoginPage() {
                             type="email"
                             value={email} 
                             placeholder="email" 
+                            disabled = {enterClicked}
                             required 
                             onChange={e=>setEmail(e.target.value)} 
+
 
                             ></input>
                             <input
@@ -71,12 +76,27 @@ export default function LoginPage() {
                                 value={password} 
                                 placeholder="senha" 
                                 required 
+                                disabled = {enterClicked}
                                 onChange={e=>setPassword(e.target.value)}
 
                             ></input>
-                            
-                            <button data-test="login-btn" type="submit" >Entrar</button>
-
+                          
+                                                        
+                           
+                            <button data-test="login-btn" type="submit"  disabled = {enterClicked} > 
+                                {
+                                    enterClicked ? 
+                                    (<ThreeDots
+                                    type="Spinner Type"
+                                    color="white"
+                                    height={60}
+                                    width={60}
+                                    timeout={2000}
+                                    visible={enterClicked}
+                                /> ):(btnText)
+                                }   
+                            </button>
+ 
                             <Link data-test="signup-link" to="/cadastro">
                                 <p >Não tem uma conta? Cadastre-se</p>
                             </Link>
@@ -134,6 +154,10 @@ button{
     line-height: 26px;
     text-align: center;
     color: #FFFFFF;
+    display:flex;
+    flex-direction: column;
+    align-items:center;
+    
 }
 
 p{  

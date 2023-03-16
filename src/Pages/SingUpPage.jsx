@@ -2,7 +2,10 @@ import styled from "styled-components"
 import {Link, useNavigate} from 'react-router-dom'
 import { useState } from "react"
 import axios from "axios"
+import {ThreeDots} from 'react-loader-spinner'
 export default function SingUpPage(){
+    const [btnClicked, setBtnClicked] = useState (false)
+    let btnText = "Cadastrar"
     const [userEmail, setUserEmail] = useState("")
     const [userPassword, setUserPassword] = useState("")
     const [userName, setUserName] = useState("")
@@ -14,7 +17,7 @@ export default function SingUpPage(){
     
     function singUp(e){
         e.preventDefault()
-       
+        setBtnClicked(true);
         const URL = "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/sign-up"
         
         const body= {email:userEmail, name:userName , password:userPassword, image:userPhoto}
@@ -54,6 +57,7 @@ export default function SingUpPage(){
                         type="email" 
                         value={userEmail}
                         placeholder="email"
+                        disabled={btnClicked}
                         required
                         onChange={e=>setUserEmail(e.target.value)}
                      ></input>
@@ -63,6 +67,7 @@ export default function SingUpPage(){
                         type="text"
                         value={userPassword}
                         placeholder="senha"
+                        disabled={btnClicked}
                         required
                         onChange={e=>setUserPassword(e.target.value)}
                     ></input>
@@ -71,7 +76,8 @@ export default function SingUpPage(){
                         data-test="user-name-input" 
                         type="text"
                         value={userName} 
-                        placeholder="nome" 
+                        placeholder="nome"
+                        disabled={btnClicked} 
                         required
                         onChange={e=>setUserName(e.target.value)}
                     ></input>
@@ -81,10 +87,21 @@ export default function SingUpPage(){
                         placeholder="foto" 
                         required
                         value={userPhoto}
+                        disabled={btnClicked}
                         onChange={e=>setUserPhoto(e.target.value)}
                     ></input>
 
-                    <button  data-test="signup-btn" type="submit" >Cadastrar</button>
+                    <button  data-test="signup-btn" type="submit" >  {
+                                    btnClicked ? 
+                                    (<ThreeDots
+                                    type="Spinner Type"
+                                    color="white"
+                                    height={60}
+                                    width={60}
+                                    timeout={2000}
+                                    visible={btnClicked}
+                                /> ):(btnText)
+                                }  </button>
 
                     <Link  data-test="login-link"  to="/">
                         <p >Já tem uma conta? Faça login!</p>
@@ -140,6 +157,9 @@ button{
     line-height: 26px;
     text-align: center;
     color: #FFFFFF;
+    display:flex;
+    flex-direction: column;
+    align-items:center;
 }
 
 p{  

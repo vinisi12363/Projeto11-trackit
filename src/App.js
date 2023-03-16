@@ -7,7 +7,8 @@ import Habits from './Pages/HabitsPage.jsx';
 
 function App() {
   const [user , setUser] = useState ({
-    name:"", 
+    image:"", 
+    name:"",
     token:"",
 
   })

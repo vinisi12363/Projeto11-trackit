@@ -5,6 +5,7 @@ import {UserContextHook} from '../Hooks/UserContextHook'
 export default function Habits(){
 
     const {user} = UserContextHook()
+    console.log ("user", user)
 
     return(
         <HabitsContainer>
