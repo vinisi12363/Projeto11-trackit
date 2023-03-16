@@ -1,47 +1,35 @@
-import Login from './pages/LoginPage.jsx'
-import SingUp from './pages/SingUpPage.jsx'
-import Habits from './pages/HabitsPage.jsx';
-import './App.css';
-import { BrowserRouter ,Route, Routes} from "react-router-dom"
-import { UserContextProvider } from './utils/Contexts/UserContext.js';
-import { useState } from 'react';
+import {  useState } from 'react';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { UserContext } from './Contexts/UserContext'
+import Login from './Pages/LoginPage.jsx'
+import SingUp from './Pages/SingUpPage.jsx'
+import Habits from './Pages/HabitsPage.jsx';
+
 function App() {
-  const  [userData, setUserData]= useState({
-   
-    "name": "",
-    "image": "",
-    "email": "",
-    "password": "",
-    "token": "",
+  const [user , setUser] = useState ({
+    name:"", 
+    token:"",
+
   })
 
   return (
-    
-        <BrowserRouter>
-      <Routes>
-        <Route path="/" element={
-             
-                 <Login 
-                 userData={userData}
-                 setUserData={setUserData}/>     
-              
-          }></Route>
+    <div>
 
-          <Route path="/cadastro" element={
-            <SingUp/>
+      <UserContext.Provider value = {{user, setUser}}>
+         <BrowserRouter>
+          <Routes>
 
-          }></Route>
+            <Route path="/" element={<Login/>}/>
+            <Route path="/cadastro" element={<SingUp/>}/>
+            <Route path="/habitos" element={<Habits/>}/>
 
-          <Route path="/habitos" element={
-            <Habits userData={userData}/>
-          }></Route>
-      </Routes>  
-      
-
-    </BrowserRouter>
-  
-  
+          </Routes>
+         </BrowserRouter>
+      </UserContext.Provider>
+   
+    </div>
   )
+
 }
 
 export default App;

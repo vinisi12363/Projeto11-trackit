@@ -1,13 +1,16 @@
-import  { useContext, useState } from "react"
+import  { useState } from "react"
 import styled from "styled-components"
 import {Link, useNavigate} from "react-router-dom"
 import axios from "axios"
-import UserContext from "../utils/Contexts/UserContext"
+import {UserContextHook} from '../Hooks/UserContextHook'
 
 
+export default function LoginPage() {
 
+    const {user ,setUser} = UserContextHook()
 
-export default function LoginPage({userData ,setUserData}) {
+   
+
     const [email , setEmail] = useState("")
     const [password, setPassword] = useState("")
     const navigate = useNavigate();
@@ -22,11 +25,8 @@ export default function LoginPage({userData ,setUserData}) {
         promise.then(res=>{
             console.log(res.data)
             const newUserData = res.data
-            setUserData ({...userData, 
-                name:newUserData.name,
+            setUser ({...user, 
                 image:newUserData.image,
-                email:newUserData.email,
-                password:newUserData.password,
                 token:newUserData.token
             })
             navigate("/habitos")
