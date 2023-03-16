@@ -1,24 +1,28 @@
 import styled from "styled-components";
 import NavBar from './NavBar.jsx'
+import HabitsFeed from "./HabitsFeed.jsx";
 import {UserContextHook} from '../Hooks/UserContextHook'
 
 export default function Habits(){
 
     const {user} = UserContextHook()
-    console.log ("user", user)
-
+    
     return(
+        <>
         <HabitsContainer>
-            <NavBar>
-                <img src={user.image}></img>
-                <p>{user.name}</p>
-            </NavBar>
-                <img src={user.image}></img>
-                <p>{user.name}</p>
+            <NavBar/> 
+            <HabitsFeed/>     
         </HabitsContainer>
+      
+        </>
+       
     )
 }
 
 const HabitsContainer = styled.div `
+    display:flex;
+    flex-direction: column;
     width:100%;
+    min-height:200vw;
+    background-color:#F2F2F2;
 `

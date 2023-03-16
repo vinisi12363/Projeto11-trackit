@@ -91,7 +91,7 @@ export default function SingUpPage(){
                         onChange={e=>setUserPhoto(e.target.value)}
                     ></input>
 
-                    <button  data-test="signup-btn" type="submit" >  {
+                    <button disabled={btnClicked} data-test="signup-btn" type="submit" >  {
                                     btnClicked ? 
                                     (<ThreeDots
                                     type="Spinner Type"
