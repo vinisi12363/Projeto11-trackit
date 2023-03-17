@@ -36,7 +36,11 @@ export default function HabitsFeed() {
             </DefaultContainer>
             }
 
-            {habit.saveClicked && new (<p> salvou ! </p>)}
+            {
+                habit.map((h=><div>{
+                            h.text
+                }</div>))
+            }
 
 
         </HabitsContainer>
