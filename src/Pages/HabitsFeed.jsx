@@ -36,6 +36,7 @@ export default function HabitsFeed() {
             </DefaultContainer>
             }
 
+            {habit.saveClicked && new (<p> salvou ! </p>)}
 
 
         </HabitsContainer>

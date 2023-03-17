@@ -60,10 +60,16 @@ export default function Habit(){
     )
     
     function saveHabit(){
-        alert("btn salvar clicado")
+       
         setSaveHabitClicked(true)
-        setHabit(habit.saveClicked = true)
-        setHabit(habit.text= newHabitText)
+        const newHabitContext = {
+            id:1,
+            text:newHabitText,
+            saveClicked:true,
+            daysOfWeek:"Domingo",
+        }
+        setHabit([...habit , newHabitContext])
+        
         console.log ("NEW HABIT", habit);
     }
 

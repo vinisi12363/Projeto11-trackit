@@ -10,6 +10,7 @@ export default function LoginPage() {
 
     let btnText = "Entrar"
     const {user ,setUser} = UserContextHook()
+    
     const [enterClicked , setEnterClicked] = useState(false)
 
     const [email , setEmail] = useState("")

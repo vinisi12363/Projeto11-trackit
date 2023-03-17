@@ -15,11 +15,7 @@ function App() {
 
   })
 
-  const [habit, setHabit] = useState ({
-      text:"",
-      saveClicked:false,
-      daysOfWeek:"",
-  })
+  const [habit, setHabit] = useState ([])
 
   return (
     <div>
