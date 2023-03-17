@@ -1,7 +1,9 @@
 import {  useState } from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { UserContext } from './Contexts/UserContext'
+import { HabitContext } from './Contexts/HabitContext';
 import Login from './Pages/LoginPage.jsx'
+
 import SingUp from './Pages/SingUpPage.jsx'
 import Habits from './Pages/HabitsPage.jsx';
 
@@ -13,9 +15,15 @@ function App() {
 
   })
 
+  const [habit, setHabit] = useState ({
+      text:"",
+      saveClicked:false,
+      daysOfWeek:"",
+  })
+
   return (
     <div>
-
+      <HabitContext.Provider value = {{habit , setHabit}}>
       <UserContext.Provider value = {{user, setUser}}>
          <BrowserRouter>
           <Routes>
@@ -27,7 +35,7 @@ function App() {
           </Routes>
          </BrowserRouter>
       </UserContext.Provider>
-   
+      </HabitContext.Provider>
     </div>
   )
 

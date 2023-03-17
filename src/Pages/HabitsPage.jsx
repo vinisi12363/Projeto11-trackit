@@ -2,17 +2,17 @@ import styled from "styled-components";
 import NavBar from './NavBar.jsx'
 import HabitsFeed from "./HabitsFeed.jsx";
 import {UserContextHook} from '../Hooks/UserContextHook'
-
+import { HabitHook } from "../Hooks/HabitHook.js";
 export default function Habits(){
 
     const {user} = UserContextHook()
-    
+    const {habit} = HabitHook()
     return(
         <>
-        <HabitsContainer>
-            <NavBar/> 
-            <HabitsFeed/>     
-        </HabitsContainer>
+            <HabitsContainer>
+                <NavBar/> 
+                <HabitsFeed/>     
+            </HabitsContainer>
       
         </>
        
