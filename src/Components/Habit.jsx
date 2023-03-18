@@ -1,14 +1,16 @@
-import { useContext, useState } from "react"
+import { useState } from "react"
 import styled from "styled-components"
 import { HabitHook } from "../Hooks/HabitHook"
+import { FormCardHook } from "../Hooks/FormCardHook"
 const selectedColor = "#CFCFCF" 
 const unSelectedColor = "#FFFFFF"
 
 export default function Habit(){
-    const  [newHabitText, setNewHabitText] = useState("")
+    const {isCanceled, setIsCanceled} = FormCardHook()
+    const [newHabitText, setNewHabitText] = useState("")
+    const [cont , setCont] = useState (0)
     const [saveHabitClicked, setSaveHabitClicked] = useState(false)
     const {habit , setHabit} = HabitHook()
-    console.log("HABIT",habit)
     const [weekDaysInfo, setWeekDaysInfo] = useState (
         [
             {
@@ -58,21 +60,41 @@ export default function Habit(){
 
         ]
     )
+    const [daysSelected, setDaysSelected] = useState([])
     
+    function setingArrayDays(){
+        const newDaySelected = [...weekDaysInfo]
+              setDaysSelected(newDaySelected)
+
+            const  newArrayDay=weekDaysInfo.map((p=>{
+                if(p.selected === true)
+                 p.selected = false;
+                return p
+            }))
+            setNewHabitText("")
+            setWeekDaysInfo(newArrayDay)
+
+    }
     function saveHabit(){
+        
+        setingArrayDays()
        
+        
+        setCont(+1)
+        
         setSaveHabitClicked(true)
+            
         const newHabitContext = {
-            id:1,
+            id:cont,
             text:newHabitText,
             saveClicked:true,
-            daysOfWeek:"Domingo",
+            daysOfWeek:daysSelected,
         }
         setHabit([...habit , newHabitContext])
         
-        console.log ("NEW HABIT", habit);
+       
     }
-
+    
     function selectDay(id) {
         
         const newWeekDaysInfo= weekDaysInfo.map((w => {
@@ -83,35 +105,46 @@ export default function Habit(){
         }))
        setWeekDaysInfo (newWeekDaysInfo);
     }
+    function cancelarForm (){
+        setIsCanceled (true);
+    }
+
     return (
-    <NewHabit>
+        !isCanceled && <NewHabit>
 
-                    <input key ="newHabitInput" value={newHabitText} type="text" onChange={e=>setNewHabitText(e.target.value)} ></input>
-               
-                    <WeekDays>
-                        {
-                            weekDaysInfo.map((day => {
+            <input key ="newHabitInput" value={newHabitText} type="text" onChange={e=>setNewHabitText(e.target.value)} ></input>
+                
+                <WeekDays>
+                    {
+                        weekDaysInfo.map((day => {
 
-                                return <DayButton
-                                    id={day.id}
-                                    color={day.selected}                                    
-                                    onClick={() => selectDay(day.id)}>
-                                    {day.name}
-                                </DayButton>
+                            return <DayButton
+                                id={day.id}
+                                color={day.selected}                                    
+                                onClick={() => selectDay(day.id)}>
+                                {day.name}
+                            </DayButton>
 
-                            }))
-                        }
+                        }))
+                    }
 
-                    </WeekDays>
+                </WeekDays>
 
-                    <StyledP>Cancelar</StyledP>
-                    <BtnSalvar onClick={()=>saveHabit()}>salvar</BtnSalvar>
+                <StyledP onClick={()=>cancelarForm()}>Cancelar</StyledP>
+                <BtnSalvar onClick={()=>saveHabit()}>salvar</BtnSalvar>
                     
-
-            </NewHabit>
-    )
+        </NewHabit> 
+    ) 
+             
+      
+       
+    
+           
+    
 
 }
+
+
 
 const NewHabit = styled.div`
     width:340px;

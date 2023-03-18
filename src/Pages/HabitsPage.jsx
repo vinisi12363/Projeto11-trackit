@@ -7,7 +7,14 @@ export default function Habits(){
 
     const {user} = UserContextHook()
     const {habit} = HabitHook()
-    return(
+    console.log("token", user.token)
+    localStorage.setItem('token', user.token)
+
+    const token = localStorage.getItem('token');
+    if (!token) {
+     localStorage.clear()
+    }
+        return(
         <>
             <HabitsContainer>
                 <NavBar/> 

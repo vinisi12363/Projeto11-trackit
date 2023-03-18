@@ -25,7 +25,7 @@ export default function LoginPage() {
        
         const promise= axios.post(URL , body)
         promise.then(res=>{
-            console.log(res.data)
+           
             const newUserData = res.data
             setUser ({...user,
                 name:newUserData.name, 
@@ -38,8 +38,9 @@ export default function LoginPage() {
         })
 
         promise.catch(err=>{
-            alert(err.response.data)
+            alert(err.response.data.message)
             setEnterClicked(false)
+            
         })
        
     }
