@@ -82,6 +82,7 @@ const Menucontainer = styled.div`
     height: 70px;
     position: fixed;
     bottom:0px;
+    z-index:1;
    
     
    

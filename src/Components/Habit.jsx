@@ -90,7 +90,7 @@ export default function Habit(){
         
     
     function saveHabit(){
-        
+        let newHabitContext;
        
        
         
@@ -99,22 +99,22 @@ export default function Habit(){
         setSaveHabitClicked(true)
          
         if (daysSelected.length > 0){
-            const newHabitContext = {
+            newHabitContext = {
                 name:newHabitText,
                 days:daysSelected,
             }
-            setObj(newHabitContext)
             
         }
-       
-       
+        if (newHabitContext !== undefined)
+        setObj(newHabitContext)
+            
     }
 
    
     
 
     useEffect(()=>{
-        if (obj!=={}){
+        if (obj!==undefined){
             console.log ("objeto dentro da require axios", obj)
             const url ="https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits"
             const body = obj
