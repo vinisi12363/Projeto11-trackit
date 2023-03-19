@@ -27,11 +27,12 @@ export default function SingUpPage(){
       
         require.then (res=> {
             alert("usuário Cadastrado com sucesso!")
+            setBtnClicked(false)
             navigate("/")
 
         })  
         require.catch(err=>{
-            
+                setBtnClicked(false)
                 err.response.status === 409 && alert("usuario já cadastrado")
 
         })
