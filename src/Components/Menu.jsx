@@ -10,56 +10,63 @@ export default function Menu(){
     function irparaHabitos(){
         navigate("/habitos")
     }
+    function irParaHistorico(){
+        navigate("/historico")
+    }
     return(
-        <Menucontainer>
-           
-            <p onClick={()=>irparaHabitos()}>Hábitos</p>
-          
-            <Link to="/hoje">
-            <CircularPContainer>
-            <CircularProgressbar value={percentage} text={'Hoje'} background={true} styles={{
-                // Customize the root svg element
-                root: {},
-                // Customize the path, i.e. the "completed progress"
-                path: {
-                // Path color
-                stroke: `rgba(255, 255, 255, ${percentage / 100})`,
-                // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
-                strokeLinecap: 'butt',
-                // Customize transition animation
-                transition: 'stroke-dashoffset 0.5s ease 0s',
-                // Rotate the path
-                transform: 'rotate(0.25turn)',
-                transformOrigin: 'center center',
-                },
-                // Customize the circle behind the path, i.e. the "total progress"
-                trail: {
-                // Trail color
-                stroke: '#52B6FF',
-                // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
-                strokeLinecap: 'round',
-                // Rotate the trail
-                transform: 'rotate(0.25turn)',
-                transformOrigin: 'center center',
-                },
-                // Customize the text
-                text: {
-                // Text color
-                fill: '#FFFFFF',
-                // Text size
-                fontSize: '20px',
-                },
-                // Customize background - only used when the `background` prop is true
-                background: {
-                fill: '#52B6FF',
-                },
-            }} >
-            
-            </CircularProgressbar>
-            </CircularPContainer>
+        <Menucontainer data-test="menu" >
+            <Link to="/habitos" data-test="habit-link">
+             <p>Hábitos</p>
             </Link>
+       
           
-            <p>Histórico</p>
+            <Link data-test="today-link" to="/hoje">
+                <CircularPContainer>
+                    <CircularProgressbar value={percentage} text={'Hoje'} background={true} styles={{
+                        // Customize the root svg element
+                        root: {},
+                        // Customize the path, i.e. the "completed progress"
+                        path: {
+                        // Path color
+                        stroke: `rgba(255, 255, 255, ${percentage / 100})`,
+                        // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
+                        strokeLinecap: 'butt',
+                        // Customize transition animation
+                        transition: 'stroke-dashoffset 0.5s ease 0s',
+                        // Rotate the path
+                        transform: 'rotate(0.25turn)',
+                        transformOrigin: 'center center',
+                        },
+                        // Customize the circle behind the path, i.e. the "total progress"
+                        trail: {
+                        // Trail color
+                        stroke: '#52B6FF',
+                        // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
+                        strokeLinecap: 'round',
+                        // Rotate the trail
+                        transform: 'rotate(0.25turn)',
+                        transformOrigin: 'center center',
+                        },
+                        // Customize the text
+                        text: {
+                        // Text color
+                        fill: '#FFFFFF',
+                        // Text size
+                        fontSize: '20px',
+                        },
+                        // Customize background - only used when the `background` prop is true
+                        background: {
+                        fill: '#52B6FF',
+                        },
+                    }} >
+                    
+                    </CircularProgressbar>
+                </CircularPContainer>
+            </Link>
+            <Link   data-test="history-link" to="/historico">
+                <p>Histórico</p>
+            </Link>
+           
             
          </Menucontainer>
 
@@ -79,11 +86,11 @@ const Menucontainer = styled.div`
     flex-direction:row;
     justify-content:space-between;
     width: 95%;
-    height: 70px;
+    height: 94px;
     position: fixed;
     bottom:0px;
-    z-index:1;
-   
+    background-color:"#FFFFFF";
+    
     
    
     p{

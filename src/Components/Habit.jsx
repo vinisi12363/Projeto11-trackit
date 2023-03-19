@@ -161,15 +161,16 @@ export default function Habit(){
     }
 
     return (
-        !isCanceled && <NewHabit>
+        !isCanceled && <NewHabit  data-test="habit-create-container">
 
-            <input key ="newHabitInput" value={newHabitText} type="text" onChange={e=>setNewHabitText(e.target.value)} ></input>
+            <input ata-test="habit-name-input" key ="newHabitInput" value={newHabitText} type="text" onChange={e=>setNewHabitText(e.target.value)} ></input>
                 
                 <WeekDays>
                     {
                         weekDaysInfo.map((day => {
 
-                            return <DayButton
+                            return <DayButton 
+                                data-test="habit-day"
                                 id={day.id}
                                 color={day.selected}                                    
                                 onClick={() => selectDay(day.id)}>
@@ -181,8 +182,8 @@ export default function Habit(){
 
                 </WeekDays>
 
-                <StyledP onClick={()=>cancelarForm()}>Cancelar</StyledP>
-                <BtnSalvar onClick={()=>{setingArrayDays();saveHabit();}}>salvar</BtnSalvar>
+                <StyledP data-test="habit-create-cancel-btn" onClick={()=>cancelarForm()}>Cancelar</StyledP>
+                <BtnSalvar data-test="habit-create-save-btn" onClick={()=>{setingArrayDays();saveHabit();}}>salvar</BtnSalvar>
                     
         </NewHabit> 
     ) 

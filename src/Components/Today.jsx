@@ -2,12 +2,17 @@ import styled from "styled-components";
 import axios from "axios"
 import {UserContextHook} from '../Hooks/UserContextHook'
 import { useEffect, useState } from "react";
+
 import {ThreeDots} from 'react-loader-spinner'
+import 'dayjs/locale/pt-br';
+import dayjs from 'dayjs';
 export default function Today() {
 const [listHabits, setListHabits] = useState ([{}])
 const {user} = UserContextHook();
 let [loadHabit, setLoadHabit] = useState(false)
-
+const dataAtual = dayjs().format('DD/MM/YYYY');
+dayjs.locale('pt-br');
+const nomeDoDia = dayjs().format('dddd');
 useEffect(()=>{
     setLoadHabit(false);
     const url = "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/today"
@@ -18,9 +23,9 @@ useEffect(()=>{
     }
     const promise = axios.get(url, config)
     promise.then (res=>{
-        console.log(res.data)
+        
         setListHabits([...res.data])
-        console.log("listHabits" ,listHabits)
+        
         setLoadHabit(true)
     })
     promise.catch(err=>{
@@ -70,7 +75,7 @@ useEffect(()=>{
             <TodayMessageArea>
             
            
-                <h1>Segunda, 17/05</h1>
+                <h1>{nomeDoDia}, {dataAtual}</h1>
                 <p>{listHabits.filter((p=>p.done===true)) ? "" : "Nenhum hábito concluído ainda"}</p>
 
                 
@@ -164,7 +169,7 @@ const HabitDayLabel = styled.div`
 
 
 const TodayContainer = styled.div`
-    overflow-y:scroll;
+    overflow:hidden;
     box-sizing:border-box;
     display:flex;
     flex-direction:column;
