@@ -1,56 +1,63 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import styled from "styled-components"
 import { HabitHook } from "../Hooks/HabitHook"
 import { FormCardHook } from "../Hooks/FormCardHook"
+import { UserContextHook } from "../Hooks/UserContextHook"
+import axios from "axios"
+
 const selectedColor = "#CFCFCF" 
 const unSelectedColor = "#FFFFFF"
 
+
+
 export default function Habit(){
+    const {user} = UserContextHook()
     const {isCanceled, setIsCanceled} = FormCardHook()
     const [newHabitText, setNewHabitText] = useState("")
     const [cont , setCont] = useState (0)
     const [saveHabitClicked, setSaveHabitClicked] = useState(false)
+    const [obj , setObj] = useState ({})
     const {habit , setHabit} = HabitHook()
     const [weekDaysInfo, setWeekDaysInfo] = useState (
         [
             {
-                id: "btn1",
+                id: 0,
                 name: "D",
                 selected: false
 
             },
             {
-                id: "btn2",
+                id: 1,
                 name: "S",
                 selected: false
 
             },
             {
-                id: "btn3",
+                id: 2,
                 name: "T",
                 selected: false
 
             },
             {
-                id: "btn4",
+                id: 3,
                 name: "Q",
                 selected: false
 
             },
             {
-                id: "btn5",
+                id: 4,
                 name: "Q",
                 selected: false
 
             },
             {
-                id: "btn6",
+                id: 5,
                 name: "S",
                 selected: false
 
             },
             {
-                id: "btn7",
+                id: 6,
                 name: "S",
                 selected: false
 
@@ -62,38 +69,82 @@ export default function Habit(){
     )
     const [daysSelected, setDaysSelected] = useState([])
     
-    function setingArrayDays(){
-        const newDaySelected = [...weekDaysInfo]
-              setDaysSelected(newDaySelected)
+    localStorage.setItem('token', user.token)
 
-            const  newArrayDay=weekDaysInfo.map((p=>{
-                if(p.selected === true)
-                 p.selected = false;
-                return p
-            }))
-            setNewHabitText("")
-            setWeekDaysInfo(newArrayDay)
+    const token = localStorage.getItem('token');
+    if (!token) {
+     localStorage.clear()
+    }
+
+    function  setingArrayDays(){
+
+
+        const newDaySelected = [...weekDaysInfo]
+                setDaysSelected(newDaySelected)
+                const newArrayDay = weekDaysInfo.filter(objeto => objeto.selected).map(objeto => objeto.id);
+                setNewHabitText("")
+                if(newArrayDay.length > 0)
+                setDaysSelected(newArrayDay)
 
     }
+        
+    
     function saveHabit(){
         
-        setingArrayDays()
+       
        
         
         setCont(+1)
         
         setSaveHabitClicked(true)
+         
+        if (daysSelected.length > 0){
+            const newHabitContext = {
+                name:newHabitText,
+                days:daysSelected,
+            }
+            setObj(newHabitContext)
             
-        const newHabitContext = {
-            id:cont,
-            text:newHabitText,
-            saveClicked:true,
-            daysOfWeek:daysSelected,
         }
-        setHabit([...habit , newHabitContext])
-        
+       
        
     }
+
+   
+    
+
+    useEffect(()=>{
+        if (obj!=={}){
+            console.log ("objeto dentro da require axios", obj)
+            const url ="https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits"
+            const body = obj
+            const config = {
+                headers: {
+                    "Authorization": `Bearer ${user.token}`
+                }
+            }
+        
+           
+                const require = axios.post (url, body ,config)
+                require.then(res=>{
+                    console.log(res.data)
+                    setHabit(res.data)
+                })
+                require.catch(err=>{
+                    console.log(err.response.data.message)
+        
+                })
+        }
+      
+        
+       }, [obj]) 
+
+  
+       
+        
+
+
+    
     
     function selectDay(id) {
         
@@ -131,7 +182,7 @@ export default function Habit(){
                 </WeekDays>
 
                 <StyledP onClick={()=>cancelarForm()}>Cancelar</StyledP>
-                <BtnSalvar onClick={()=>saveHabit()}>salvar</BtnSalvar>
+                <BtnSalvar onClick={()=>{setingArrayDays();saveHabit();}}>salvar</BtnSalvar>
                     
         </NewHabit> 
     ) 

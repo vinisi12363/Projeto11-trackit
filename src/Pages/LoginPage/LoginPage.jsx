@@ -2,7 +2,7 @@ import  { useState } from "react"
 import styled from "styled-components"
 import {Link, useNavigate} from "react-router-dom"
 import axios from "axios"
-import {UserContextHook} from '../Hooks/UserContextHook'
+import {UserContextHook} from '../../Hooks/UserContextHook'
 import {ThreeDots} from 'react-loader-spinner'
 
 
@@ -32,7 +32,7 @@ export default function LoginPage() {
                 image:newUserData.image,
                 token:newUserData.token
             })
-            navigate("/habitos")
+            navigate("/hoje")
           
 
         })

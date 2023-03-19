@@ -3,9 +3,10 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { UserContext } from './Contexts/UserContext'
 import { HabitContext } from './Contexts/HabitContext';
 import {FormCardContext} from './Contexts/FormCardContext'
-import Login from './Pages/LoginPage.jsx'
-import SingUp from './Pages/SingUpPage.jsx'
-import Habits from './Pages/HabitsPage.jsx';
+import Login from './Pages/LoginPage/LoginPage'
+import SingUp from './Pages/SingUpPage/SingUpPage'
+import Habits from './Pages/HabitPage/HabitsPage';
+import Today from './Pages/TodayPage/TodayPage'
 
 function App() {
   const [user , setUser] = useState ({
@@ -14,9 +15,9 @@ function App() {
     token:"",
 
   })
-
   const [habit, setHabit] = useState ([])
   const [isCanceled, setIsCanceled] = useState(false)
+
   return (
     <div>
       <FormCardContext.Provider value = {{isCanceled, setIsCanceled}}>
@@ -28,6 +29,7 @@ function App() {
               <Route path="/" element={<Login/>}/>
               <Route path="/cadastro" element={<SingUp/>}/>
               <Route path="/habitos" element={<Habits/>}/>
+              <Route path="/hoje" element ={<Today/>}/>
 
             </Routes>
           </BrowserRouter>

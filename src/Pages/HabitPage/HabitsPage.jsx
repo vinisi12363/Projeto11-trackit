@@ -1,13 +1,14 @@
 import styled from "styled-components";
-import NavBar from './NavBar.jsx'
+import NavBar from '../../Components/NavBar'
+import Menu from '../../Components/Menu'
 import HabitsFeed from "./HabitsFeed.jsx";
-import {UserContextHook} from '../Hooks/UserContextHook'
-import { HabitHook } from "../Hooks/HabitHook.js";
+import {UserContextHook} from '../../Hooks/UserContextHook'
+import { HabitHook } from '../../Hooks/HabitHook'
 export default function Habits(){
 
     const {user} = UserContextHook()
     const {habit} = HabitHook()
-    console.log("token", user.token)
+    
     localStorage.setItem('token', user.token)
 
     const token = localStorage.getItem('token');
@@ -18,7 +19,8 @@ export default function Habits(){
         <>
             <HabitsContainer>
                 <NavBar/> 
-                <HabitsFeed/>     
+                <HabitsFeed/>
+                <Menu/>
             </HabitsContainer>
       
         </>
