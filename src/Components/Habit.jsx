@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react"
 import styled from "styled-components"
-import { HabitHook } from "../Hooks/HabitHook"
 import { FormCardHook } from "../Hooks/FormCardHook"
 import { UserContextHook } from "../Hooks/UserContextHook"
 import axios from "axios"
@@ -16,8 +15,6 @@ export default function Habit(){
     const [newHabitText, setNewHabitText] = useState("")
     const [cont , setCont] = useState (0)
     const [saveHabitClicked, setSaveHabitClicked] = useState(false)
-    const [obj , setObj] = useState ({})
-    const {habit , setHabit} = HabitHook()
     const [weekDaysInfo, setWeekDaysInfo] = useState (
         [
             {
@@ -90,57 +87,44 @@ export default function Habit(){
         
     
     function saveHabit(){
-        let newHabitContext;
        
        
-        
         setCont(+1)
         
         setSaveHabitClicked(true)
          
-        if (daysSelected.length > 0){
-            newHabitContext = {
-                name:newHabitText,
-                days:daysSelected,
-            }
-            
+       
+       const  newHabit = {
+            name:newHabitText,
+            days:daysSelected,
         }
-        if (newHabitContext !== undefined)
-        setObj(newHabitContext)
-            
-    }
-
-   
-    
-
-    useEffect(()=>{
-        if (obj!==undefined){
-            console.log ("objeto dentro da require axios", obj)
+        
+        
+        if (newHabit !== undefined && newHabit.name !== ""  && newHabit.days !== []){
+       
             const url ="https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits"
-            const body = obj
+            const body = newHabit
             const config = {
                 headers: {
                     "Authorization": `Bearer ${user.token}`
                 }
             }
         
-           
                 const require = axios.post (url, body ,config)
                 require.then(res=>{
                     console.log(res.data)
-                    setHabit(res.data)
+                  
                 })
                 require.catch(err=>{
                     console.log(err.response.data.message)
         
                 })
         }
-      
-        
-       }, [obj]) 
+           
+    }
 
+   
   
-       
         
 
 

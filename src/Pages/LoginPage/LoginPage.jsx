@@ -17,6 +17,7 @@ export default function LoginPage() {
     localStorage.setItem('userData', user)
 
     const userData = localStorage.getItem('userData');
+    
    
     // useEffect(()=>{
     //     if(userData){
@@ -159,9 +160,11 @@ input{
     min-height:45px;
 }
 button{
-    min-width: 303px;
+    border:none;
+
+    min-width: 312px;
     min-height: 45px;
-    margin-top:6px;
+    margin-top:10px;
     background: #52B6FF;
     border-radius: 4.63636px;
     font-family: 'Lexend Deca';
@@ -174,6 +177,7 @@ button{
     display:flex;
     flex-direction: column;
     align-items:center;
+    justify-content:center;
     
 }
 

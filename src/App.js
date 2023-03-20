@@ -16,7 +16,7 @@ function App() {
     token:"",
 
   })
-  const [habit, setHabit] = useState ([])
+  const [habit, setHabit] = useState ([{}])
   const [isCanceled, setIsCanceled] = useState(false)
 
   return (

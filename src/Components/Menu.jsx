@@ -2,17 +2,14 @@ import styled from "styled-components";
 import { CircularProgressbar} from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import { Link, Navigate, useNavigate } from "react-router-dom";
+import { HabitHook } from "../Hooks/HabitHook";
+import { useEffect, useState } from "react";
 
 export default function Menu(){
-    
-     const navigate = useNavigate();
+    const {habit} = HabitHook()
+   
     const percentage = 75;
-    function irparaHabitos(){
-        navigate("/habitos")
-    }
-    function irParaHistorico(){
-        navigate("/historico")
-    }
+    
     return(
         <Menucontainer data-test="menu" >
             <Link to="/habitos" data-test="habit-link">
