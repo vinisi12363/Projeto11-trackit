@@ -31,7 +31,8 @@ export default function Habits(){
 const HabitsContainer = styled.div `
     display:flex;
     flex-direction: column;
+    margin-top:60px;
     width:100%;
     min-height:200vw;
-    background-color:#F2F2F2;
+    background-color:#e5e5e5e5;
 `

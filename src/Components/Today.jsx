@@ -197,13 +197,13 @@ const TodayContainer = styled.div`
     box-sizing:border-box;
     display:flex;
     flex-direction:column;
-    background-color:"#E5E5E5";
+    background-color:#E5E5E5;
     width:100%;
     align-items:center;
 `
 const TodayMessageArea = styled.div`
     min-width:303px;
-    background-color:"#E5E5E5";
+    background-color:#E5E5E5;
     h1{
 
         font-family: 'Lexend Deca';
