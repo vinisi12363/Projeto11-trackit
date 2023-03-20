@@ -1,9 +1,8 @@
 import { useContext } from "react";
-import {BtnPlusClickContext } from "../Contexts/BtnPlusClickContext";
+import {BtnPlusClickedContext } from "../Contexts/BtnPlusClickedContext";
 
 export function  BtnPlusClickedHook (){
-    const context = useContext (BtnPlusClickContext)
-
+    const context = useContext (BtnPlusClickedContext)
     if (context === undefined)
     throw   new Error ('Não está dentro do contexto')
 

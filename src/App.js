@@ -4,7 +4,7 @@ import { UserContext } from './Contexts/UserContext'
 import { HabitContext } from './Contexts/HabitContext';
 import {FormCardContext} from './Contexts/FormCardContext'
 import { PercentContext } from './Contexts/PercentContext';
-import { BtnPlusClickedContext } from './Contexts/BtnPlusClickContext';
+import { BtnPlusClickedContext } from './Contexts/BtnPlusClickedContext';
 import Login from './Pages/LoginPage/LoginPage'
 import SingUp from './Pages/SingUpPage/SingUpPage'
 import Habits from './Pages/HabitPage/HabitsPage'
