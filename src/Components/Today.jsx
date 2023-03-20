@@ -59,7 +59,7 @@ useEffect(()=>{
     setPercent(newPercent);
     let num = Math.round(percent)
     
-    setPercentageText (`${num}% dos hábitos concluídos`)
+    setPercentageText (`${Math.round(percent)}% dos hábitos concluídos`)
 
 },[listHabits])
     function markHabit(id){
