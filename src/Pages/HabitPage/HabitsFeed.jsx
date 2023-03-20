@@ -1,6 +1,7 @@
 
 import styled from "styled-components";
 import trashIcon from '../../Utils/images/lixeira.png'
+import plusIcon from '../../Utils/images/plus.png'
 import { useContext, useEffect, useState } from "react";
 import Habit from '../../Components/Habit.jsx'
 import { HabitContext } from "../../Contexts/HabitContext.jsx";
@@ -144,10 +145,9 @@ export default function HabitsFeed() {
                 <NewHabitContainer>
                     <h2>Meus Hábitos</h2>
 
-                    <PlusContainer >
-                        <svg   width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path data-test="habit-create-btn" onClick={addNewHabit} d="M0.244925 8.66063V6.23279H5.55921V0.837576H8.39169V6.23279H13.7599V8.66063H8.39169V13.867H5.55921V8.66063H0.244925Z" fill="white" />
-                        </svg>
+                    <PlusContainer data-test="habit-create-btn" onClick={addNewHabit} >
+                       
+                        <img src={plusIcon} alt="btn mais"></img>
                     </PlusContainer>
 
 
@@ -229,16 +229,18 @@ const NewHabitContainer = styled.div`
     }
 
 `
-const PlusContainer = styled.div`
+const PlusContainer = styled.button`
+    border: none;
+    cursor: pointer;
+    padding: 0;
     width:40px;
     height:35px;
     border-radius: 4.63636px;
     background: #52B6FF;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-   
+    img{
+       
+    }
+    
 
 `
 const DeleteBinContainer = styled.button`

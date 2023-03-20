@@ -89,7 +89,7 @@ export default function Habit(){
     
     function saveHabit(){
        
-        setSetingHabit(true)
+        
         setCont(+1)
         
         setSaveHabitClicked(true)
@@ -101,8 +101,8 @@ export default function Habit(){
         }
         
         
-        if (newHabit !== undefined && newHabit.name !== ""  && newHabit.days !== []){
-       
+        if (newHabit !== undefined && newHabit.name !== ""  && newHabit.days.length>0 && newHabit.days !== []){
+            setSetingHabit(true)
             const url ="https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits"
             const body = newHabit
             const config = {
@@ -115,13 +115,17 @@ export default function Habit(){
                 require.then(res=>{
                     console.log(res.data)
                     setSetingHabit(false)
+                    setDaysSelected([])
+                    setNewHabitText("")
                 })
                 require.catch(err=>{
                     console.log(err.response.data.message)
                     setSetingHabit(false)
                 })
         }
-       }else {alert("não pode salvar um hábito com o campo vazio!")}
+       }else {alert("não pode salvar um hábito com o campo vazio!")
+            setSetingHabit (false)
+        }
       
            
     }
