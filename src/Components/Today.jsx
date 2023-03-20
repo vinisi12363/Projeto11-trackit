@@ -57,7 +57,9 @@ useEffect(()=>{
             })
     const newPercent = done/total*100
     setPercent(newPercent);
-    setPercentageText (`${percent.toFixed(2)}% dos hábitos concluídos`)
+    let num = Math.round(percent)
+    
+    setPercentageText (`${num}% dos hábitos concluídos`)
 
 },[listHabits])
     function markHabit(id){
