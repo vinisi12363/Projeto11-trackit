@@ -73,7 +73,7 @@ export default function HabitsFeed() {
     }
     function addNewHabit() {
         setBtnPlusClicked(true)
-
+        setIsCanceled (false);
     }
 
     useEffect(() => {
@@ -140,8 +140,8 @@ export default function HabitsFeed() {
                     <h2>Meus Hábitos</h2>
 
                     <PlusContainer >
-                        <svg  data-test="habit-create-btn" onClick={addNewHabit} width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path  d="M0.244925 8.66063V6.23279H5.55921V0.837576H8.39169V6.23279H13.7599V8.66063H8.39169V13.867H5.55921V8.66063H0.244925Z" fill="white" />
+                        <svg   width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path data-test="habit-create-btn" onClick={addNewHabit} d="M0.244925 8.66063V6.23279H5.55921V0.837576H8.39169V6.23279H13.7599V8.66063H8.39169V13.867H5.55921V8.66063H0.244925Z" fill="white" />
                         </svg>
                     </PlusContainer>
 

@@ -94,8 +94,8 @@ export default function Habit(){
         
         setSaveHabitClicked(true)
          
-       
-       const  newHabit = {
+       if (newHabitText !== ""){
+        const  newHabit = {
             name:newHabitText,
             days:daysSelected,
         }
@@ -121,6 +121,8 @@ export default function Habit(){
                     setSetingHabit(false)
                 })
         }
+       }else {alert("não pode salvar um hábito com o campo vazio!")}
+      
            
     }
 
