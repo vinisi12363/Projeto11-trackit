@@ -11,8 +11,8 @@ const unSelectedColor = "#FFFFFF"
 
 
 export default function HabitsFeed() {
+
     const { isCanceled, setIsCanceled } = useContext(FormCardContext)
-    const { habit, setHabit } = useContext(HabitContext)
     const [habitsInServer, setHabitsInServer] = useState([])
     const [btnPlusClicked, setBtnPlusClicked] = useState(false)
     const [haveHabits, setHaveHabits] = useState(false)
@@ -85,13 +85,15 @@ export default function HabitsFeed() {
         }
         const require = axios.get(URL, config);
         require.then(res => {
-
+            console.log(res.data)
             setHabitsInServer([...res.data])
+            if (res.data!== [])
             setHaveHabits(true)
 
         })
         require.catch(err => {
             console.log(err.response.data.message)
+            setHaveHabits(false)
         })
 
     }, [])
@@ -147,7 +149,10 @@ export default function HabitsFeed() {
                 </NewHabitContainer>
 
                 {btnPlusClicked && <Habit />}
-                {haveHabits ? <SetedCardContainer data-test="habit-container" >
+                { !haveHabits ?  (<DefaultContainer>
+                        <p>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</p>
+                    </DefaultContainer>)
+                    : (<SetedCardContainer data-test="habit-container" >
                     {
                         habitsInServer.map((h => <SetedCard  >{
                             <>
@@ -173,10 +178,7 @@ export default function HabitsFeed() {
                         }</SetedCard>))
                     }
 
-                </SetedCardContainer>
-                    : <DefaultContainer>
-                        <p>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</p>
-                    </DefaultContainer>
+                </SetedCardContainer>)
                 }
 
 

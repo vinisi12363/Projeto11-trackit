@@ -1,4 +1,4 @@
-import  { useState } from "react"
+import  { useEffect, useState } from "react"
 import styled from "styled-components"
 import {Link, useNavigate} from "react-router-dom"
 import axios from "axios"
@@ -7,11 +7,26 @@ import {ThreeDots} from 'react-loader-spinner'
 
 
 export default function LoginPage() {
-
+    
+  
     let btnText = "Entrar"
     const {user ,setUser} = UserContextHook()
     
     const [enterClicked , setEnterClicked] = useState(false)
+        
+    localStorage.setItem('userData', user)
+
+    const userData = localStorage.getItem('userData');
+   
+    // useEffect(()=>{
+    //     if(userData){
+    //         navigate("/hoje")
+    //         //userRef.current.focus();
+    //     }
+    //     if (!userData) {
+    //         localStorage.clear()
+    //     }
+    // },[])
 
     const [email , setEmail] = useState("")
     const [password, setPassword] = useState("")
