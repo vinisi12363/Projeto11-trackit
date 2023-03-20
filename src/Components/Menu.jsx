@@ -14,7 +14,7 @@ export default function Menu(){
         
         <Menucontainer data-test="menu" >
             <Link to="/habitos" data-test="habit-link">
-             <p>Hábitos</p>
+             <a>Hábitos</a>
             </Link>
        
           
@@ -62,7 +62,7 @@ export default function Menu(){
                 </CircularPContainer>
             </Link>
             <Link   data-test="history-link" to="/historico">
-                <p>Histórico</p>
+                <a>Histórico</a>
             </Link>
            
             
@@ -73,19 +73,20 @@ export default function Menu(){
     )
   
 }
-const Menucontainer = styled.div`
-    z-index:1;
+const Menucontainer = styled.footer`
+    
     position: fixed;
-    bottom:0px;
+    bottom:0;
+    left:0;
+    width:100vw;
     display:flex;
-    flex-direction:row;
     justify-content:space-between;
-    width: 95%;
-    background-color:"#FFFFFF";
+    background:#FFFFFF;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
-    justify-content:space-between;
    
-    p{
+   
+    a{  margin-left:10px;
+        margin-right:10px;
         font-family: 'Lexend Deca';
         font-style: normal;
         font-weight: 400;
