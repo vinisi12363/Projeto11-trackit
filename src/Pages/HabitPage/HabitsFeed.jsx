@@ -86,10 +86,14 @@ export default function HabitsFeed() {
         }
         const require = axios.get(URL, config);
         require.then(res => {
-            console.log(res.data)
+            
             setHabitsInServer([...res.data])
-            if (res.data!== [])
-            setHaveHabits(true)
+            if (res.data!== []){
+                setHaveHabits(true)
+                
+
+            }
+            
 
         })
         require.catch(err => {

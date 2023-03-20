@@ -149,7 +149,7 @@ export default function Habit(){
 
     return (
         !isCanceled && <NewHabit>
-
+            
             <input  disabled={setingHabit} key ="newHabitInput" value={newHabitText} type="text" onChange={e=>setNewHabitText(e.target.value)} ></input>
                 
                 <WeekDays disabled={setingHabit}>
