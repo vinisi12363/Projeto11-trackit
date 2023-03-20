@@ -11,6 +11,7 @@ export default function Menu(){
     const percentage = 75;
     
     return(
+        
         <Menucontainer data-test="menu" >
             <Link to="/habitos" data-test="habit-link">
              <p>Hábitos</p>
@@ -66,29 +67,23 @@ export default function Menu(){
            
             
          </Menucontainer>
+        
+       
 
     )
   
 }
-const CircularPContainer = styled.div `
-    width:91px;
-    min-height:91px;
-    position:relative;
-    bottom:35px;
-
-`
-
 const Menucontainer = styled.div`
+    z-index:1;
+    position: fixed;
+    bottom:0px;
     display:flex;
     flex-direction:row;
     justify-content:space-between;
     width: 95%;
-    height: 94px;
-    position: fixed;
-    bottom:0px;
     background-color:"#FFFFFF";
-    
-    
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+    justify-content:space-between;
    
     p{
         font-family: 'Lexend Deca';
@@ -102,3 +97,12 @@ const Menucontainer = styled.div`
     }
 
 `
+const CircularPContainer = styled.div `
+    width:91px;
+    height:91px;
+    position:relative;
+    bottom:30px;
+
+
+`
+

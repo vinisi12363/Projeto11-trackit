@@ -18,8 +18,11 @@ export default function NavBar(){
 }
 
 const NavBarStyle = styled.div `
+    z-index:1;
+    position:fixed;
+    top:0;
     width:100%;
-    min-height:70px;
+
     background-color: #126BA5;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
     display: flex;
