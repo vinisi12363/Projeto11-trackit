@@ -10,6 +10,7 @@ const unSelectedColor = "#FFFFFF"
 
 
 export default function Habit(){
+    const [setingHabit, setSetingHabit] = useState(false)
     const {user} = UserContextHook()
     const {isCanceled, setIsCanceled} = FormCardHook()
     const [newHabitText, setNewHabitText] = useState("")
@@ -88,7 +89,7 @@ export default function Habit(){
     
     function saveHabit(){
        
-       
+        setSetingHabit(true)
         setCont(+1)
         
         setSaveHabitClicked(true)
@@ -113,11 +114,11 @@ export default function Habit(){
                 const require = axios.post (url, body ,config)
                 require.then(res=>{
                     console.log(res.data)
-                  
+                    setSetingHabit(false)
                 })
                 require.catch(err=>{
                     console.log(err.response.data.message)
-        
+                    setSetingHabit(false)
                 })
         }
            
@@ -147,13 +148,14 @@ export default function Habit(){
     return (
         !isCanceled && <NewHabit>
 
-            <input key ="newHabitInput" value={newHabitText} type="text" onChange={e=>setNewHabitText(e.target.value)} ></input>
+            <input  disabled={setingHabit} key ="newHabitInput" value={newHabitText} type="text" onChange={e=>setNewHabitText(e.target.value)} ></input>
                 
-                <WeekDays>
+                <WeekDays disabled={setingHabit}>
                     {
                         weekDaysInfo.map((day => {
 
                             return <DayButton
+                                data-test="habit-day" 
                                 id={day.id}
                                 color={day.selected}                                    
                                 onClick={() => selectDay(day.id)}>
@@ -166,7 +168,7 @@ export default function Habit(){
                 </WeekDays>
 
                 <StyledP onClick={()=>cancelarForm()}>Cancelar</StyledP>
-                <BtnSalvar onClick={()=>{setingArrayDays();saveHabit();}}>salvar</BtnSalvar>
+                <BtnSalvar disabled={setingHabit} onClick={()=>{setingArrayDays();saveHabit();}}>salvar</BtnSalvar>
                     
         </NewHabit> 
     ) 

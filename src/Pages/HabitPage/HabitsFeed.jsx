@@ -11,7 +11,7 @@ const unSelectedColor = "#FFFFFF"
 
 
 export default function HabitsFeed() {
-
+ 
     const { isCanceled, setIsCanceled } = useContext(FormCardContext)
     const [habitsInServer, setHabitsInServer] = useState([])
     const [btnPlusClicked, setBtnPlusClicked] = useState(false)
@@ -73,7 +73,7 @@ export default function HabitsFeed() {
     }
     function addNewHabit() {
         setBtnPlusClicked(true)
-        
+
     }
 
     useEffect(() => {
