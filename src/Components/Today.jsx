@@ -61,7 +61,7 @@ useEffect(()=>{
     
     setPercentageText (`${Math.round(percent)}% dos hábitos concluídos`)
 
-},[listHabits])
+},[])
     function markHabit(id){
         setLoadingHabit(true)
         const url = `https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${id}/check`

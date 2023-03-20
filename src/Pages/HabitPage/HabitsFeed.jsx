@@ -7,6 +7,7 @@ import Habit from '../../Components/Habit.jsx'
 import { HabitContext } from "../../Contexts/HabitContext.jsx";
 import { FormCardContext } from "../../Contexts/FormCardContext";
 import { UserContextHook } from '../../Hooks/UserContextHook'
+import {BtnPlusClickedHook} from '../../Hooks/BtnPlusClickedHook'
 import axios from "axios"
 const selectedColor = "#CFCFCF"
 const unSelectedColor = "#FFFFFF"
@@ -16,7 +17,7 @@ export default function HabitsFeed() {
  
     const { isCanceled, setIsCanceled } = useContext(FormCardContext)
     const [habitsInServer, setHabitsInServer] = useState([])
-    const [btnPlusClicked, setBtnPlusClicked] = useState(false)
+    const {btnPlusClicked, setBtnPlusClicked} = BtnPlusClickedHook()
     const [haveHabits, setHaveHabits] = useState(false)
     const [weekDaysInfo, setWeekDaysInfo] = useState(
         [
@@ -154,7 +155,8 @@ export default function HabitsFeed() {
 
                 </NewHabitContainer>
 
-                {btnPlusClicked && <Habit />}
+                {btnPlusClicked ? <Habit />: <></>}
+
                 { !haveHabits ?  (<DefaultContainer>
                         <p>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</p>
                     </DefaultContainer>)

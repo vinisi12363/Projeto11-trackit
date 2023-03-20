@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import styled from "styled-components"
 import { FormCardHook } from "../Hooks/FormCardHook"
 import { UserContextHook } from "../Hooks/UserContextHook"
+import {BtnPlusClickedHook} from "../Hooks/BtnPlusClickedHook"
 import axios from "axios"
 
 const selectedColor = "#CFCFCF" 
@@ -10,6 +11,7 @@ const unSelectedColor = "#FFFFFF"
 
 
 export default function Habit(){
+    const {btnPlusClicked, setBtnPlusClicked} = BtnPlusClickedHook()
     const [setingHabit, setSetingHabit] = useState(false)
     const {user} = UserContextHook()
     const {isCanceled, setIsCanceled} = FormCardHook()
@@ -112,6 +114,7 @@ export default function Habit(){
                     setSetingHabit(false)
                     setDaysSelected([])
                     setNewHabitText("")
+                    setBtnPlusClicked(false)
                 })
                 require.catch(err=>{
                     console.log(err.response.data.message)
@@ -144,6 +147,7 @@ export default function Habit(){
     }
     function cancelarForm (){
         setIsCanceled (true);
+        setBtnPlusClicked(false);
     }
 
     return (

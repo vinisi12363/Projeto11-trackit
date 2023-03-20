@@ -4,6 +4,7 @@ import { UserContext } from './Contexts/UserContext'
 import { HabitContext } from './Contexts/HabitContext';
 import {FormCardContext} from './Contexts/FormCardContext'
 import { PercentContext } from './Contexts/PercentContext';
+import { BtnPlusClickedContext } from './Contexts/BtnPlusClickContext';
 import Login from './Pages/LoginPage/LoginPage'
 import SingUp from './Pages/SingUpPage/SingUpPage'
 import Habits from './Pages/HabitPage/HabitsPage'
@@ -20,9 +21,11 @@ function App() {
   })
   const [habit, setHabit] = useState ([{}])
   const [isCanceled, setIsCanceled] = useState(false)
+  const [btnPlusClicked , setBtnPlusClicked] = useState(false)
 
   return (
     <div>
+      <BtnPlusClickedContext.Provider value= {{btnPlusClicked , setBtnPlusClicked}}>
       <PercentContext.Provider value= {{percent , setPercent}}>
       <FormCardContext.Provider value = {{isCanceled, setIsCanceled}}>
       <HabitContext.Provider value = {{habit , setHabit}}>
@@ -42,6 +45,7 @@ function App() {
       </HabitContext.Provider>
       </FormCardContext.Provider>
       </PercentContext.Provider>
+      </BtnPlusClickedContext.Provider>
     </div>
   )
 
