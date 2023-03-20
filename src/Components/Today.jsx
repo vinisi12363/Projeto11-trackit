@@ -102,10 +102,10 @@ useEffect(()=>{
                         }
 
                     {!loadingHabit &&
-                    <HabitsDayContainer ata-test="today-habit-container" >
+                    <HabitsDayContainer  >
                                 <>
                                     { 
-                                    listHabits.map((h=><HabitDayLabel>{
+                                    listHabits.map((h=><HabitDayLabel ata-test="today-habit-container" >{
                                                 <>
                                                     <h2 data-test="today-habit-name" >{h.name}</h2>    
                                                     <p data-test="today-habit-sequence" >sequência atual: {h.currentSequence} dias</p>
