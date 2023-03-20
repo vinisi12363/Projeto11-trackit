@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { UserContext } from './Contexts/UserContext'
 import { HabitContext } from './Contexts/HabitContext';
 import {FormCardContext} from './Contexts/FormCardContext'
+import { PercentContext } from './Contexts/PercentContext';
 import Login from './Pages/LoginPage/LoginPage'
 import SingUp from './Pages/SingUpPage/SingUpPage'
 import Habits from './Pages/HabitPage/HabitsPage'
@@ -10,6 +11,7 @@ import Today from './Pages/TodayPage/TodayPage'
 import History from './Pages/HistoryPage/HistoryPage'
 
 function App() {
+  const [percent, setPercent] = useState()
   const [user , setUser] = useState ({
     image:"", 
     name:"",
@@ -21,6 +23,7 @@ function App() {
 
   return (
     <div>
+      <PercentContext.Provider value= {{percent , setPercent}}>
       <FormCardContext.Provider value = {{isCanceled, setIsCanceled}}>
       <HabitContext.Provider value = {{habit , setHabit}}>
       <UserContext.Provider value = {{user, setUser}}>
@@ -38,6 +41,7 @@ function App() {
       </UserContext.Provider>
       </HabitContext.Provider>
       </FormCardContext.Provider>
+      </PercentContext.Provider>
     </div>
   )
 

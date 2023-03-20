@@ -4,11 +4,17 @@ import 'react-circular-progressbar/dist/styles.css';
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import { HabitHook } from "../Hooks/HabitHook";
 import { useEffect, useState } from "react";
+import { PercentContextHook } from "../Hooks/PercentContextHook";
 
 export default function Menu(){
     const {habit} = HabitHook()
-   
-    const percentage = 75;
+    const {percent , setPercent} = PercentContextHook()
+    console.log("percent" , percent)
+    const p = 75;
+    
+    useEffect(()=>{
+       // setPercent(p);
+    },[])
     
     return(
         
@@ -20,13 +26,13 @@ export default function Menu(){
           
             <Link data-test="today-link" to="/hoje">
                 <CircularPContainer>
-                    <CircularProgressbar value={percentage} text={'Hoje'} background={true} styles={{
+                    <CircularProgressbar value={percent} text={'Hoje'} background={true} styles={{
                         // Customize the root svg element
                         root: {},
                         // Customize the path, i.e. the "completed progress"
                         path: {
                         // Path color
-                        stroke: `rgba(255, 255, 255, ${percentage / 100})`,
+                        stroke: `rgba(255, 255, 255, ${percent/ 100})`,
                         // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
                         strokeLinecap: 'butt',
                         // Customize transition animation
@@ -79,6 +85,7 @@ const Menucontainer = styled.footer`
     bottom:0;
     left:0;
     width:100vw;
+    height:15%;
     display:flex;
     justify-content:space-between;
     background:#FFFFFF;
