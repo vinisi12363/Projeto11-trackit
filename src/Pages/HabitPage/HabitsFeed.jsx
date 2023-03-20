@@ -114,7 +114,8 @@ export default function HabitsFeed() {
         setWeekDaysInfo(newObj);
     }
     function deleteHabit(id) {
-        if (window.confirm("Tem certeza que deseja deletar o hábito?")) {
+        resultado = window.confirm("Tem certeza que deseja deletar o hábito?");
+        if (resultado) {
             const url = `https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${id}`
             const config = {
                 headers: {
