@@ -152,7 +152,7 @@ export default function Habit(){
     }
 
     return (
-        !isCanceled && <NewHabit>
+        !isCanceled && <NewHabit data-test="habit-create-container">
             
             <input  disabled={setingHabit} key ="newHabitInput" value={newHabitText} type="text" onChange={e=>setNewHabitText(e.target.value)} ></input>
                 
