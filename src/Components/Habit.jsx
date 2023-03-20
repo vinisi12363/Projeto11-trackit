@@ -173,8 +173,8 @@ export default function Habit(){
 
                 </WeekDays>
 
-                <StyledP onClick={()=>cancelarForm()}>Cancelar</StyledP>
-                <BtnSalvar disabled={setingHabit} onClick={()=>{setingArrayDays();saveHabit();}}>salvar</BtnSalvar>
+                <StyledP data-test="habit-create-cancel-btn" onClick={()=>cancelarForm()}>Cancelar</StyledP>
+                <BtnSalvar data-test="habit-create-save-btn" disabled={setingHabit} onClick={()=>{setingArrayDays();saveHabit();}}>salvar</BtnSalvar>
                     
         </NewHabit> 
     ) 
@@ -212,11 +212,12 @@ const NewHabit = styled.div`
 
 `
 
-const StyledP = styled.p `
-    
+const StyledP = styled.button `
+        border:none;
+        background:transparent;
         position:relative;
-        top:22px;
-        left:10px;
+        left:135px;
+        top:15px;
         font-family: 'Lexend Deca';
         font-style: normal;
         font-weight: 400;
@@ -259,8 +260,8 @@ const DayButton = styled.button`
 `
 const BtnSalvar = styled.button`
         position:relative;
-        left:240px;
-        bottom:20px;
+        left:155px;
+        top:15px;
         width: 84px;
         height: 35px;
         background: #52B6FF;
