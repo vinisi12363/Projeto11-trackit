@@ -74,22 +74,17 @@ export default function Habit(){
      localStorage.clear()
     }
 
-    function  setingArrayDays(){
-
+        
+    
+    function saveHabit(){
+        
+        
 
         const newDaySelected = [...weekDaysInfo]
                 setDaysSelected(newDaySelected)
                 const newArrayDay = weekDaysInfo.filter(objeto => objeto.selected).map(objeto => objeto.id);
                 setNewHabitText("")
-                if(newArrayDay.length > 0)
-                setDaysSelected(newArrayDay)
-
-    }
-        
-    
-    function saveHabit(){
-       
-        
+              
         setCont(+1)
         
         setSaveHabitClicked(true)
@@ -97,7 +92,7 @@ export default function Habit(){
        if (newHabitText !== ""){
         const  newHabit = {
             name:newHabitText,
-            days:daysSelected,
+            days:newArrayDay,
         }
         
         
@@ -174,7 +169,7 @@ export default function Habit(){
                 </WeekDays>
 
                 <StyledP data-test="habit-create-cancel-btn" onClick={()=>cancelarForm()}>Cancelar</StyledP>
-                <BtnSalvar data-test="habit-create-save-btn" disabled={setingHabit} onClick={()=>{setingArrayDays();saveHabit();}}>salvar</BtnSalvar>
+                <BtnSalvar data-test="habit-create-save-btn" disabled={setingHabit} onClick={()=>{saveHabit();}}>salvar</BtnSalvar>
                     
         </NewHabit> 
     ) 
